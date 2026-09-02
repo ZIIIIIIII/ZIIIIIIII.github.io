@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>设备信息1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background: #f2f4f8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 16px 12px 30px;
+        }
+
+        /* 卡片容器 – 模拟截图风格 */
+        .card {
+            max-width: 480px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+            padding: 20px 18px 24px;
+            transition: all 0.2s;
+            border: 1px solid #eef0f3;
+        }
+
+        /* 标题区 – 带小装饰线 */
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #dce1e9;
+        }
+
+        /* 信息行 – 仿截图结构 */
+        .info-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f2f5;
+        }
+        .info-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-size: 15px;
+            font-weight: 500;
+            color: #3c4a5a;
+            min-width: 100px;
+            flex: 0 0 auto;
+            letter-spacing: 0.2px;
+        }
+
+        .info-value {
+            font-size: 15px;
+            font-weight: 450;
+            color: #0b1c2e;
+            word-break: break-word;
+            flex: 1 1 0;
+            padding-left: 6px;
+        }
+
+        .info-value.highlight {
+            font-weight: 500;
+            color: #134b6b;
+        }
+
+        /* 生产信息独立区块 – 视觉分割 */
+        .production-block {
+            margin-top: 24px;
+            border-top: 2px dashed #d0d8e0;
+            padding-top: 18px;
+        }
+
+        /* 对于较长的值 (如统一社会信用代码) 适当缩进 */
+        .info-value.code {
+            font-family: 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace;
+            font-size: 14px;
+            letter-spacing: 0.2px;
+            background: #f8fafc;
+            padding: 2px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            background: #f2f5f9;
+        }
+
+        /* 生产地址、批次等可能换行 */
+        .info-value.address {
+            line-height: 1.5;
+        }
+
+        /* 微调间距 */
+        .mt-1 {
+            margin-top: 2px;
+        }
+
+        /* 适配小屏手机 */
+        @media (max-width: 420px) {
+            .card {
+                padding: 16px 12px 20px;
+            }
+            .info-label {
+                min-width: 80px;
+                font-size: 14px;
+            }
+            .info-value {
+                font-size: 14px;
+                padding-left: 2px;
+            }
+            .section-title {
+                font-size: 15px;
+            }
+            .info-row {
+                padding: 6px 0;
+            }
+            .info-value.code {
+                font-size: 12px;
+                padding: 2px 6px;
+            }
+        }
+
+
+        /* 统一社会信用代码 单独样式 */
+        .code-block {
+            background: #f5f7fa;
+            padding: 2px 10px 2px 8px;
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: 450;
+        }
+
+        /* 生产批次保留原样 */
+        .batch-value {
+            font-family: 'SF Mono', 'Menlo', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        /* 分割线效果 —— 与截图一致，部分行没有下划线？但截图中基本都有细线，保留 */
+        .info-row:not(:last-child) {
+            border-bottom: 1px solid #edf0f5;
+        }
+        .production-block .info-row:last-child {
+            border-bottom: none;
+        }
+        /* 但截图中两个大区块之间有明显分割，已用 dashed 处理 */
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- 设备基本信息 区块 -->
+        <div class="section-title">设备基本信息</div>
+
+        <!-- 产品类型/名称 -->
+        <div class="info-row">
+            <span class="info-label">产品类型/名称</span>
+            <span class="info-value">无门槛单扇防护密闭门</span>
+        </div>
+
+        <!-- 型号编码 -->
+        <div class="info-row">
+            <span class="info-label">型号编码</span>
+            <span class="info-value">WDFM1522(6)-P-S</span>
+        </div>
+
+        <!-- 接口尺寸/mm -->
+        <div class="info-row">
+            <span class="info-label">接口尺寸/mm</span>
+            <span class="info-value">1500*2200</span>
+        </div>
+
+        <!-- 材质 (截图里材质值显示为800*2200，保留) -->
+        <div class="info-row">
+            <span class="info-label">材质</span>
+            <span class="info-value highlight">节镍型不锈钢</span>
+        </div>
+
+        <!-- 研发单位 (带省略号风格，但内容完整) -->
+        <div class="info-row">
+            <span class="info-label">研发单位</span>
+            <span class="info-value">
+                三门峡安泰人防工程有限公司
+            </span>
+        </div>
+
+        <!-- 设备生产信息 区块 -->
+        <div class="production-block">
+            <div class="section-title" style="margin-bottom: 12px;">设备生产信息</div>
+
+            <!-- 生产单位 -->
+            <div class="info-row">
+                <span class="info-label">生产单位</span>
+                <span class="info-value">玉林市冠涛防护设备有限公司</span>
+            </div>
+
+            <!-- 统一社会信用代码 -->
+            <div class="info-row">
+                <span class="info-label">统一社会信用代码</span>
+                <span class="info-value">9145090077174549XL</span>
+            </div>
+
+            <!-- 生产时间 -->
+            <div class="info-row">
+                <span class="info-label">生产时间</span>
+                <span class="info-value">2026年6月20日</span>
+            </div>
+
+            <!-- 生产批次 -->
+            <div class="info-row">
+                <span class="info-label">生产批次</span>
+                <span class="info-value">260620401</span>
+            </div>
+        </div>
+    </div>
+    <!-- 额外留白-->
+    <div style="height: 8px; width: 100%; max-width: 480px;"></div>
+</body>
+</html>
